@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <root></root>
+    <child></child>
+    <ol>
+        <tool-items v-for="item in items" v-bind:todo="item"></tool-items>
+    </ol>
+</div>
+
+<div id="app2">
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+    <p>{{total}}</p>
+</div>
+
+</body>
+<script src="vue.js"></script>
+<script>
+    Vue.component('root', {
+        template: '<p>1234</p>',
+        props: {}
+    });
+    let child = {
+        template: '<div>1231232131</div>'
+    }
+
+    Vue.component('tool-items', {
+        props: ['todo'],
+        template: '<li>{{todo.text}}</li>'
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            items: [
+                {text: 'a'},
+                {text: 'b'},
+                {text: 'c'},
+            ]
+        },
+        components: {
+            child: child,
+        }
+    })
+
+    Vue.component('button-counter', {
+        template: '<button v-on:click="incrementHandler">{{counter}}</button>',
+        data: function () {
+            return {counter: 0}
+        },
+        methods: {
+            incrementHandler: function () {
+                this.counter++;
+            }
+        }
+    })
+    new Vue({
+
+    })
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="app">
+    {{a || 0}}
+    <a :href="href">aaa</a>
+
+    <p>{{msg}}</p>
+    <p>{{newMsg}}</p>
+    <p>{{now}}</p>
+    <p v-if="seen">seen</p>
+    <p v-else>no</p>
+    <p v-show="ok">ok</p>
+    <button @click="a++">点我</button>
+
+    <ol>
+        <li v-for="site in sites">
+            {{site.name}}
+        </li>
+
+    </ol>
+
+    <span v-bind:class="{active: isActive}">111</span>
+    <button @click="isActive = 1">点我变颜色</button>
+
+<!--    <span v-bind:style="{background-color: activeColor}">222</span>-->
+
+    <button v-on:click="greet">点我试试</button>
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+
+    let data = {
+        a: 3, href: 'http://www.baidu.com',
+        msg: 'aaaaa',
+        seen: 0,
+        ok: 1,
+        sites: [
+            {name: 'a'},
+            {name: 'b'},
+            {name: 'c'},
+        ],
+        isActive: 0,
+        activeColor: 'red',
+
+    };
+
+    let vue = new Vue({
+        el: '#app',
+        data: data,
+        computed: {
+            newMsg: function () {
+                return this.msg.toUpperCase();
+            },
+            now: function () {
+                return Date.now();
+            }
+        },
+        methods: {
+            greet: function () {
+            }
+        }
+    });
+
+    vue.$watch('a', function (newVal, oldVal) {
+        console.log(newVal, oldVal);
+    });
+
+</script>
+</html>

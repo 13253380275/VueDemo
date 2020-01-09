@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="message">
+    <p>{{message}}</p>
+
+    <input type="checkbox" id="cat" v-model="animal" value="cat"> cat
+    <input type="checkbox" id="dog" v-model="animal" value="dog"> dog
+    <input type="checkbox" id="bird" v-model="animal" value="bird"> bird
+
+    <p>{{animal}}</p>
+
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: "123456",
+            animal: ['dog']
+        }
+    });
+</script>
+</html>
